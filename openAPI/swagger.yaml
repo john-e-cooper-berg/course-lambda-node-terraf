@@ -1,0 +1,59 @@
+swagger: "2.0"
+info:
+  description: "BMI Calculator"
+  version: "1.0.0"
+  title: "BMI Calculator"
+  termsOfService: "http://bmicompany.io/terms/"
+  contact:
+    email: "name@bmicompany.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "bmicalc.bmicompany.io"
+basePath: "/"
+tags:
+  - name: "bmi"
+    description: "BMI calculator"
+schemes:
+  - "https"
+  - "http"
+paths:
+  /bmi:
+    get:
+      tags:
+        - "bmi"
+      summary: "BMI calculator"
+      description: "BMI calculator"
+      operationId: "getBMI"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "weight"
+          in: "query"
+          description: "Weight [kg]"
+          required: true
+          type: "number"
+        - name: "height"
+          in: "query"
+          description: "Height [cm]"
+          required: true
+          type: "number"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "object"
+            items:
+              $ref: "#/definitions/BMI"
+        400:
+          description: "Bad request"
+        500:
+          description: "Internal server (lambda) error"
+definitions:
+  BMI:
+    type: "object"
+    required:
+      - "bmi"
+    properties:
+      name:
+        type: "number"
