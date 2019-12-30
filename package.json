@@ -4,7 +4,8 @@
   "description": "bmi calc",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "nodemon": "nodemon local/localLambda.js"
   },
   "keywords": [
     "bmi"
@@ -15,5 +16,11 @@
     "jest": "^24.9.0",
     "jest-html-reporter": "^2.8.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2",
+    "uuidv4": "^6.0.0",
+    "winston": "^3.2.1"
+  }
 }
