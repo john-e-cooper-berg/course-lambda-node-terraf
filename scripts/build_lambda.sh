@@ -18,7 +18,7 @@ zip_package(){
     cd "${ROOT_DIR}"
     npm install --progress=false --production
 
-    rm -rf ${DIST_DIR}
+    #rm -rf ${DIST_DIR}
     mkdir -p $DIST_DIR
     zip -q -9 -r "${DIST_DIR}/${ZIP_FILE}" .
 
