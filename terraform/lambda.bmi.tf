@@ -32,3 +32,56 @@ resource "aws_iam_role" "bmi_lambda_iam_role" {
 }
 EOF
 }
+
+resource "aws_api_gateway_resource" "proxy" {
+  parent_id   = aws_api_gateway_rest_api.bmi_api_gateway.root_resource_id
+  path_part   = "{proxy+}"
+  rest_api_id = aws_api_gateway_rest_api.bmi_api_gateway.id
+}
+
+resource "aws_api_gateway_method" "proxy" {
+  authorization = "NONE"
+  http_method   = "ANY"
+  resource_id   = aws_api_gateway_resource.proxy.id
+  rest_api_id   = aws_api_gateway_rest_api.bmi_api_gateway.id
+}
+
+resource "aws_lambda_permission" "apigw" {
+  action        = "lambda:InvokeFunction"
+  statement_id  = "AllowAPIGatewayInvoke"
+  function_name = "${aws_lambda_function.lambda.function_name}"
+  principal     = "apigateway.amazonaws.com"
+
+  source_arn = "${aws_api_gateway_rest_api.bmi_api_gateway.execution_arn}/*/*"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
